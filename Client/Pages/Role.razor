@@ -1,0 +1,50 @@
+﻿@page "/Role"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<h1>ClaimsPrincipal Data And Role</h1>
+
+<button @onclick="GetClaimsPrincipalData">Get ClaimsPrincipal Data</button>
+
+<p>@authMessage</p>
+<p>@isAdmin</p>
+
+@if (claims.Count() > 0)
+{
+    <ul>
+        @foreach (var claim in claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    </ul>
+}
+
+<p>@surname</p>
+
+@code {
+    private string? authMessage;
+    private string? surname;
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+    private string? isAdmin;
+
+    private async Task GetClaimsPrincipalData()
+    {
+        var authState = await AuthenticationStateProvider
+            .GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            authMessage = $"{user.Identity.Name} is authenticated.";
+            claims = user.Claims;
+            surname = user.FindFirst(c => c.Type == ClaimTypes.Surname)?.Value;
+            isAdmin = user.IsInRole("ac8e254b-9c11-481b-ab96-f904c9a78e2a").ToString();
+        }
+        else
+        {
+            authMessage = "The user is NOT authenticated.";
+        }
+    }
+}
+
