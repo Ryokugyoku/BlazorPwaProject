@@ -14,3 +14,8 @@ macOsで動けば、Linuxでも動くと思われるため、OSに依存しな�
 
 ## セキュリティ周りの設定
 　実装中　※アカウントに紐づけられているロールでの閲覧制御のひな型はできている。
+
+## Visual Studio Codeで開発するときに利用する拡張機能
+ ResX Editor
+ JavaScript Debugger (Nigthly)
+ C#
