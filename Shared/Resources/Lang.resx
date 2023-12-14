@@ -173,4 +173,8 @@
     <value>Fetch data</value>
     <comment/>
   </data>
+  <data name="sidemenu_role" xml:space="preserve">
+    <value>Role</value>
+    <comment/>
+  </data>
 </root>
