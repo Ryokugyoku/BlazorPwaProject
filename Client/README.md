@@ -56,3 +56,19 @@
 
  ```
 
+ # ローカライズ
+ ## クライアントサイド
+  IStringLocalizerをNugetでインストールして利用する。
+  resxファイルは Sharedファイルに格納することで、サーバサイドでも共通して利用することができる。
+
+  .razorファイルで利用する際は下記のようにコードを記述する必要がある
+  ① 下記のようにIStringLocalizerを宣言する
+ ```
+	@inject IStringLocalizer<Lang> LoText
+ ```
+  ②宣言した変数を元に対象文字列を呼び出す
+   ※ resxファイルの project_titleを呼び出すとき
+   ```
+   LoText["project_title"] 
+   ```
+  
